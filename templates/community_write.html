@@ -1,0 +1,17 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<h1>글을 작성할 수 있습니다</h1>
+<form method = "POST">
+  {% csrf_token %}
+  <div>
+    <label>제목</label>
+    <input name="title" type = "text">
+  </div>
+  <div>
+    <label>내용</label>
+    <textarea name ="content"></textarea>
+  </div>
+  <button type="submit">작성</button>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div>
+    <h1>커뮤니티페이지</h1>
+</div>
+
+<div style="display: flex; align-items: center; gap: 10px;">
+    <h2 style="margin: 0;">톡 까봐요, 영어고민 BEST</h2>
+    <a href="/community_all/" style="font-size: 14px;">더보기</a>
+</div>
+
+<ul>
+    {% for post in posts %}
+    <li>
+        <p>{{ post.post_title }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div>
+    <h2>{{ post.post_title }}</h2>
+    <p>{{ post.post_content }}</p>
+    <hr>
+
+    <!-- 댓글 목록 -->
+    <h3>댓글</h3>
+    <ul>
+        {% for comment in post.comment_set.all %}
+            {% if not comment.parent %}
+            <li>
+                {{ comment.comment_content }}
+                <ul>
+                    {% for reply in comment.replies.all %}
+                        <li>{{ reply.comment_content }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+        {% empty %}
+            <li>아직 댓글이 없습니다.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- 댓글 작성 폼 -->
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="comment_content" placeholder="댓글을 작성해보세요"></textarea>
+        <button type="submit">댓글 작성</button>
+    </form>
+</div>
+
+<a href="/community_all/">목록으로 돌아가기</a>
+{% endblock %}

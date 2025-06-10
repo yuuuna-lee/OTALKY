@@ -1,0 +1,19 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<div style="display: flex; align-items: center; gap: 10px;">
+    <h1>톡까봐요, 영어고민</h1>
+    <a href="/community_write/">글쓰기</a>
+</div>
+
+<ul>
+    {% for post in posts %}
+    <li>
+        <!-- 제목 클릭하면 상세페이지로 이동 -->
+        <h2><a href="/community_detail/{{ post.id }}/">{{ post.post_title }}</a></h2>
+        <p>{{ post.post_content|truncatewords:10 }}</p>  <!-- 미리보기만 -->
+        <small>댓글 {{ post.comment_set.count }}개</small>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

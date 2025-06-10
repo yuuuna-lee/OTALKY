@@ -1,0 +1,22 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+<h1>뉴스 생성기</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">생성하기</button>
+</form>
+
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+
+{% for news in news %}
+<div>
+    <h3>{{ news.news_title }}</h3>
+    <p>{{ news.news_content }}</p>
+</div>
+{% endfor %}
+
+{% endblock %}
